@@ -127,3 +127,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# homework related
+*.png
+*.jpg
+*.svg
+*.zip
+data/
+!DLStudio-2.2.2/*
