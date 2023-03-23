@@ -2698,12 +2698,13 @@ class DLStudio(object):
                     identity = self.downsampler(identity)
                 if self.skip_connections:
                     if self.in_ch == self.out_ch:
-                        out += identity                              
+                        out = out + identity                              
                     else:
                         ## To understand the following assignments, recall that the data has the
                         ## shape [B,C,H,W]. So it is the second axis that corresponds to the channels
-                        out[:,:self.in_ch,:,:] += identity
-                        out[:,self.in_ch:,:,:] += identity
+                        # out[:,:self.in_ch,:,:] += identity
+                        # out[:,self.in_ch:,:,:] += identity
+                        out = torch.cat((out[:,:self.in_ch,:,:] + identity, out[:,self.in_ch:,:,:] + identity), dim=1)
                 return out
 
 
@@ -2938,10 +2939,11 @@ class DLStudio(object):
                     identity = self.downsampler(identity)
                 if self.skip_connections:
                     if self.in_ch == self.out_ch:
-                        out += identity                              
+                        out = out + identity                              
                     else:
-                        out[:,:self.in_ch,:,:] += identity
-                        out[:,self.in_ch:,:,:] += identity
+                        # out[:,:self.in_ch,:,:] += identity
+                        # out[:,self.in_ch:,:,:] += identity
+                        out = torch.cat((out[:,:self.in_ch,:,:] + identity, out[:,self.in_ch:,:,:] + identity), dim=1)
                 return out
 
         class BMEnet(nn.Module):
@@ -3295,10 +3297,11 @@ class DLStudio(object):
                     identity = self.downsampler(identity)
                 if self.skip_connections:
                     if self.in_ch == self.out_ch:
-                        out += identity                              
+                        out = out + identity                              
                     else:
-                        out[:,:self.in_ch,:,:] += identity
-                        out[:,self.in_ch:,:,:] += identity
+                        # out[:,:self.in_ch,:,:] += identity
+                        # out[:,self.in_ch:,:,:] += identity
+                        out = torch.cat((out[:,:self.in_ch,:,:] + identity, out[:,self.in_ch:,:,:] + identity), dim=1)
                 return out
 
 
@@ -4020,10 +4023,11 @@ class DLStudio(object):
                     identity = self.downsampler(identity)
                 if self.skip_connections:
                     if self.in_ch == self.out_ch:
-                        out += identity                              
+                        out = out + identity                              
                     else:
-                        out[:,:self.in_ch,:,:] += identity
-                        out[:,self.in_ch:,:,:] += identity
+                        # out[:,:self.in_ch,:,:] += identity
+                        # out[:,self.in_ch:,:,:] += identity
+                        out = torch.cat((out[:,:self.in_ch,:,:] + identity, out[:,self.in_ch:,:,:] + identity), dim=1)
                 return out
 
         class SkipBlockUP(nn.Module):
@@ -4059,9 +4063,9 @@ class DLStudio(object):
                     identity = self.upsampler(identity)
                 if self.skip_connections:
                     if self.in_ch == self.out_ch:
-                        out += identity                              
+                        out = out + identity                              
                     else:
-                        out += identity[:,self.out_ch:,:,:]
+                        out = out + identity[:,self.out_ch:,:,:]
                 return out
 
         class mUnet(nn.Module):

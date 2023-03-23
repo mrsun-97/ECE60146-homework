@@ -45,7 +45,7 @@ from DLStudio import *
 
 dls = DLStudio(
 #                  dataroot = "/home/kak/ImageDatasets/PurdueShapes5/",
-                  dataroot = "./data/PurdueShapes5/",
+                  dataroot = "./data/",
                   image_size = [32,32],
                   path_saved_model = "./saved_model",
                   momentum = 0.9,
@@ -53,7 +53,8 @@ dls = DLStudio(
                   epochs = 2,
                   batch_size = 4,
                   classes = ('rectangle','triangle','disk','oval','star'),
-                  use_gpu = True,
+                  # false
+                  use_gpu = False,
               )
 
 
