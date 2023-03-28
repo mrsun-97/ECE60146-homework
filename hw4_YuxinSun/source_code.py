@@ -11,7 +11,9 @@ import numpy as np
 from PIL import Image
 import random
 import os
+from pathlib import Path
 
+pwd = Path(__file__).parent
 # use directml to run codes on AMD GPU
 dml = torch_directml.device()
 
@@ -97,7 +99,7 @@ class MyDataset(torch.utils.data.Dataset):
     ])
 
     # read COCO data from coco_dir, resize them and write to save_dir
-    def __init__(self, *, coco_dir="./coco", save_dir="./resized", train_num=1500, test_num=500, \
+    def __init__(self, *, coco_dir=pwd/"coco", save_dir=pwd/"resized", train_num=1500, test_num=500, \
             catType=['airplane','bus','cat','dog','pizza'], update=False
         ):
         dataDir  = coco_dir
@@ -150,7 +152,7 @@ class MyDataset(torch.utils.data.Dataset):
     def gen_resized_image(self, cocoGt, dataDir, new_size=(64,64), update=False):
         for im in self.data:
             path = '%s/%s'%(self.dir, im['file_name'])
-            img = Image.open('%s/images/%s'%(dataDir, im['file_name']))
+            img = Image.open('%s/%s/%s'%(dataDir, 'train2014', im['file_name']))
             if img.mode != 'RGB':
                 # force update if it is not RGB
                 img = img.convert('RGB')

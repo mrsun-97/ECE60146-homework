@@ -34,12 +34,14 @@ def plot(imgs, row_title=None, **imshow_kwargs):
     plt.tight_layout()
 
 # %%
+from pathlib import Path
+pwd = Path(__file__).parent
 annType = []
 # annType = annType[1]      #specify type here
 catType = ['airplane','bus','cat','dog','pizza']
 prefix = 'person_keypoints' if annType=='keypoints' else 'instances'
 print('Running demo for *%s* results.'%(annType))
-dataDir='./coco'
+dataDir=pwd/'coco'
 dataType='train2014'
 annFile = '%s/annotations/%s_%s.json'%(dataDir,prefix,dataType)
 cocoGt=COCO(annFile)
@@ -87,19 +89,19 @@ for im in imgs:
     path = 'resized/%s'%im['file_name']
     if os.path.exists(path):
         continue
-    img = Image.open('%s/images/%s'%(dataDir, im['file_name'])).resize((64,64),resample=Image.Resampling.LANCZOS)
+    img = Image.open('%s/%s/%s'%(dataDir, dataType, im['file_name'])).resize((64,64),resample=Image.Resampling.LANCZOS)
     img.save(path)
 imgs = cocoGt.loadImgs(test_set)
-for im in imgs:
-    path = 'resized/%s'%im['file_name']
-    if os.path.exists(path):
-        continue
-    img = Image.open('%s/images/%s'%(dataDir, im['file_name'])).resize((64,64),resample=Image.Resampling.LANCZOS)
-    img.save(path)
-print("resize done")
+# for im in imgs:
+#     path = 'resized/%s'%im['file_name']
+#     if os.path.exists(path):
+#         continue
+#     img = Image.open('%s/%s'%(dataDir, im['file_name'])).resize((64,64),resample=Image.Resampling.LANCZOS)
+#     img.save(path)
+# print("resize done")
 
 # %%
-img = Image.open('%s/images/%s'%(dataDir, cocoGt.loadImgs(64)[0]['file_name']))
+img = Image.open('%s/%s/%s'%(dataDir, dataType, cocoGt.loadImgs(64)[0]['file_name']))
 # img.mode
 img.resize([256,256])
 
@@ -358,7 +360,7 @@ _id, predicted = torch.max(outputs.data, 1)
 print(list(map(lambda x: dataset.label_to_cat[x.item()],labels)))
 print(list(map(lambda x: dataset.label_to_cat[x.item()],predicted)))
 # plt.imshow(np.transpose(torchvision.utils.make_grid(images,
-#                                                       normalize=False, padding=3, pad_value=255).cpu(), (1,2,0)))
+#            normalize=False, padding=3, pad_value=255).cpu(), (1,2,0)))
 # plt.show()
 # outputs.data
 

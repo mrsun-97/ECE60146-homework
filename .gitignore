@@ -136,3 +136,5 @@ dmypy.json
 *.zip
 data/
 !DLStudio-2.2.2/*
+*.tar.gz
+*.pth
