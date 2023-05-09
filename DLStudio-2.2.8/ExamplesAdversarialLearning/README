@@ -1,0 +1,68 @@
+
+IMPORTANT NOTE:  
+
+    You will need to install the PurdueShapes5GAN dataset before you can execute any scripts 
+    in this directory.
+
+    Download the dataset archive
+
+            datasets_for_AdversarialNetworks.tar.gz
+
+    through the link "Download the image dataset for AdversarialNetworks" provided at the top
+    of the HTML version of the main module doc page and store it in the
+    'ExamplesAdversarialNetworks' directory of the distribution.  Subsequently, execute the
+    following command in the directory 'ExamplesAdversarialNetworks':
+
+            tar zxvf datasets_for_AdversarialNetworks.tar.gz
+
+    This command will create a 'dataGAN' subdirectory and deposit the following dataset archive
+    in that subdirectory:
+
+            PurdueShapes5GAN-20000.tar.gz
+
+    Now execute the following in the "dataGAN" directory:
+
+            tar zxvf PurdueShapes5GAN-20000.tar.gz
+
+    With that, you should be able to execute the adversarial learning based scripts in the
+    'ExamplesAdversarialLearning' directory.
+
+
+========================================================================================
+
+
+The adversarial learning scripts in this directory are:
+
+
+
+1.     dcgan_DG1.py                              <<  DLStudio implementation of DCGAN
+
+                                                     The Discriminator-Generator pair used in
+                                                     this script is in the section 
+                                                     "DG1 Start" of the class file AdversarialLearning.py
+
+2.     dcgan_DG2.py                              <<  DCGAN with a small mod in the Discriminator
+
+                                                     The Discriminator-Generator pair used in
+                                                     this script is in the section 
+                                                     "DG2 Start" of the class file AdversarialLearning.py
+
+
+3.     wgan_CG1.py                               <<  DLStudio implementation of WGAN
+
+                                                     WGAN uses a Critic as opposed to a 
+                                                     Discriminator.  The Critic-Generator
+                                                     pair used here is in the section 
+                                                     labeled "CG1 Start" of the class file AdversarialLearning.py
+
+4.     wgan_with_gp_CG2.py                       <<  DLStudio implementation of WGAN with Gradient Penalty
+
+                                                     This WGAN incorporates a Gradient Pentalty to penalize
+                                                     the norm of the gradient of the Critic function with 
+                                                     respect to its input.  The Critic-Generator
+                                                     pair uses here is in the section labeled
+                                                     "CG2 Start" of the class file AdversarialLearning.py
+
+You can see the results that I have obtained with these scripts in the subdirectory
+
+       RVLCloud_based_results

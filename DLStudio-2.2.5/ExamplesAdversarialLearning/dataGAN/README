@@ -1,0 +1,49 @@
+This README contains info regarding the dataset you need for running the scripts on
+adversarial learning for data modeling.
+
+Dataset:
+
+  1.   PurdueShapes5GAN
+
+           PurdueShapes5GAN-20000.gz
+
+This dataset is needed for running the scripts in the ExamplesAdversarialNetworks
+directory.  The number '20000' in the name of the dataset archive means that it
+consists of 20,000 images.
+
+This dataset was designed for giving classroom demonstrations of adversarial learning
+for data modeling.
+
+The images in the dataset are of size 64x64.  Each image has a random number (up to
+five) of the objects drawn from the following five shapes: rectangle, triangle, disk,
+oval, and star.  Each shape is randomized with respect to all its parameters,
+including those for its scale and location in the image. Even the choice of color for
+each object is assigned randomly.
+
+======================================================================================
+
+After you have unpacked the top-level data archive file 
+
+       datasets_for_AdversarialNetworks.tar.gz
+by 
+       tar zxvf datasets_for_AdversarialNetworks.tar.gz
+
+in the ExamplesAdversarialNetworks directory of the distribution, you will see
+the following dataset directory
+
+       dataGAN
+
+Now do
+
+       cd dataGAN
+      
+and you will see in this directory an archive named 
+
+      PurdueShapes5GAN-20000.tar.gz
+
+Now do the following
+
+      tar zxvf PurdueShapes5GAN-20000.tar.gz
+
+
+
